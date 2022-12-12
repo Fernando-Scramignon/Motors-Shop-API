@@ -10,6 +10,6 @@ import "dotenv/config";
   );
 
   app.listen(PORT, () => {
-    console.log(`App is running!`);
+    console.log(`App is running at port ${PORT}!`);
   });
 })();
