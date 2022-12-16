@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from "express";
 import { AppError } from "../errors/appError";
 
-export const handleErrorMiddleware = (
+function handleErrorMiddleware(
     err: any,
     request: Request,
     response: Response,
     _: NextFunction
-) => {
+) {
     if (err instanceof AppError) {
         return response.status(err.statusCode).json({
             status: "error",
@@ -22,4 +22,6 @@ export const handleErrorMiddleware = (
         code: 500,
         message: "Internal server error",
     });
-};
+}
+
+export default handleErrorMiddleware;
