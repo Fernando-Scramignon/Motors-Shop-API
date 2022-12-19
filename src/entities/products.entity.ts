@@ -4,42 +4,45 @@ import { Image } from "./images.entity";
 
 @Entity("products")
 export class Product {
-  @PrimaryColumn("uuid")
-  readonly id: string;
+    @PrimaryColumn("uuid")
+    readonly id: string;
 
-  @Column({ length: 100 })
-  title: string;
+    @Column({ length: 100 })
+    title: string;
 
-  @Column({ type: "integer" })
-  year: number;
+    @Column({ type: "integer" })
+    year: number;
 
-  @Column()
-  km: number;
+    @Column()
+    km: number;
 
-  @Column({ type: "integer" })
-  price: number;
+    @Column({ type: "integer" })
+    price: number;
 
-  @Column({ length: 256 })
-  description: string;
+    @Column({ length: 256 })
+    description: string;
 
-  @Column()
-  vehicle_type: string;
+    @Column()
+    vehicle_type: string;
 
-  @Column()
-  announcement_type: string;
+    @Column()
+    announcement_type: string;
 
-  @Column({ default: false })
-  published: boolean;
+    @Column({ default: false })
+    published: boolean;
 
-  @Column()
-  cover_image: string;
+    @Column()
+    cover_image: string;
 
-  @OneToMany(() => Image, (image: Image) => image.product, { eager: true, onDelete: "CASCADE" })
-  images: Image[];
+    @OneToMany(() => Image, (image: Image) => image.product, {
+        eager: true,
+        onDelete: "CASCADE",
+    })
+    images: Image[];
 
-  constructor() {
-    if (!this.id) {
-      this.id = uuid();
+    constructor() {
+        if (!this.id) {
+            this.id = uuid();
+        }
     }
-  }
 }
