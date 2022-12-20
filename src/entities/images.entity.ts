@@ -4,18 +4,18 @@ import { Product } from "./products.entity";
 
 @Entity("images")
 export class Image {
-  @PrimaryColumn("uuid")
-  readonly id: string;
+    @PrimaryColumn("uuid")
+    readonly id: string;
 
-  @Column()
-  url: string;
+    @Column()
+    url: string;
 
-  @ManyToOne(() => Product)
-  product: string;
+    @ManyToOne(() => Product, (product) => product.images)
+    product: Product;
 
-  constructor() {
-    if (!this.id) {
-      this.id = uuid();
+    constructor() {
+        if (!this.id) {
+            this.id = uuid();
+        }
     }
-  }
 }
