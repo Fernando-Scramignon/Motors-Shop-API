@@ -2,20 +2,17 @@ import { AppDataSource } from "../../data-source";
 import { Product } from "../../entities/products.entity";
 import { AppError } from "../../errors/appError";
 
-async function getProductByIdService(id: string) {
+async function deleteProductService(id: string) {
     const productRepository = AppDataSource.getRepository(Product);
-
-    const product = await productRepository.findOne({
-        where: {
-            id: id,
-        },
-    });
+    const product = await productRepository.findOneBy({ id });
 
     if (!product) {
         throw new AppError(404, "Product not found");
     }
 
-    return product;
+    await productRepository.delete(id);
+
+    return;
 }
 
-export default getProductByIdService;
+export default deleteProductService;
