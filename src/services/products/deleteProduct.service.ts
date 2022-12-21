@@ -1,6 +1,6 @@
 import { AppDataSource } from "../../data-source";
-import { AppError } from "../../errors/appError";
 import { Product } from "../../entities/products.entity";
+import { AppError } from "../../errors/appError";
 
 async function deleteProductService(id: string) {
     const productRepository = AppDataSource.getRepository(Product);
