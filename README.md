@@ -1,6 +1,6 @@
 # M6 E-Commerce
 
-Uma Api feita para uma loja virtual de compra, venda e leilão de automóveis. Usuários podem se cadastrar e fazer login, existem dois tipos de usuários: comprador e anunciante. O comprador terá um CRUD para as informações do seu perfil e podera visualizar, comprar e adicionar feedbacks sobre os veículos. O anunciante terá um CRUD das informações do seu perfil e de seus produto.
+Uma Api feita para uma loja virtual de compra, venda e leilão de automóveis. Usuários podem se cadastrar e fazer login, existem dois tipos de usuários: comprador e anunciante. O comprador terá um CRUD para as informações do seu perfil e podera visualizar, comprar e adicionar feedbacks sobre os veículos. O anunciante terá um CRUD das informações do seu perfil e de seus produtos.
 
 # Como instalar e rodar a aplicação
 
@@ -23,13 +23,15 @@ Uma Api feita para uma loja virtual de compra, venda e leilão de automóveis. U
 -   ex: `npm run dev`
 
 # Diagrama da Aplicação 
+Até o momento apenas as entidades de users, products e images estão disponíveis na aplicação
+
+<img src="https://user-images.githubusercontent.com/99349453/208805170-36d71dce-8ca2-4d18-83a5-74f8f5bc0b71.png" >
+
 
 
 # Rotas
 
 **BASE_URL: http://localhost:3001**
-
-O workspace com todas as requisições se encontra na pasta raiz da aplicação para que se possa ser importada no insominia
 
 ## **Rotas de Produtos:**
 
