@@ -4,7 +4,6 @@ import { AppError } from "../../errors/appError";
 
 async function getProductByIdService(id: string) {
     const productRepository = AppDataSource.getRepository(Product);
-
     const product = await productRepository.findOne({
         where: {
             id: id,
