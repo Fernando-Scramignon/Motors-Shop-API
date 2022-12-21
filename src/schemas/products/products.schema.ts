@@ -9,7 +9,7 @@ function isValidUrl(url: string) {
     return true;
 }
 
-function veichleType(type: string) {
+function vehicleType(type: string) {
     return type == "Carro" || type == "Moto" ? true : false;
 }
 
@@ -27,9 +27,9 @@ const productSchema = yup.object().shape({
         .string()
         .required()
         .test(
-            "Is a valid veichle type",
-            "Is not a valid veichle type",
-            (value) => veichleType(value as string)
+            "Is a valid vehicle type",
+            "Is not a valid vehicle type",
+            (value) => vehicleType(value as string)
         ),
     announcement_type: yup
         .string()
