@@ -43,13 +43,13 @@ Até o momento apenas as entidades de users, products e images estão disponíve
 
 ```json
 {
-    "title": "Carro",
+    "title": "Volkswagen",
     "year": 2004,
     "km": 2312,
     "price": 120000,
     "description": "Um carro muito bom e em bom estado",
     "vehicle_type": "Carro",
-    "announcement_type": "Carro",
+    "announcement_type": "Venda",
     "published": true,
     "cover_image": "https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/02-images/cruze-sport6-rs-carros.jpg?imwidth=960",
     "images": [
