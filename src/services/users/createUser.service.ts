@@ -8,8 +8,9 @@ export async function createUserService(userInfo: IUserCreation) {
     const userRepository = AppDataSource.getRepository(User);
 
     const userAlreadyExists = await userRepository.findOne({
-        where: { email: userInfo.email },
+        where: [{ email: userInfo.email }, { cpf: userInfo.cpf }],
     });
+
     if (userAlreadyExists) throw new AppError(409, "User already exists");
 
     const hashedPassword = await hash(userInfo.password, 10);
