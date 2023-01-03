@@ -10,7 +10,7 @@ const idOwnerVerifierMiddleware = async (
     const idComparer = req.user.id;
 
     if (id !== idComparer) {
-        throw new AppError(401, "Unauthorized");
+        throw new AppError(401, "Não autorizado");
     } else {
         next();
     }
