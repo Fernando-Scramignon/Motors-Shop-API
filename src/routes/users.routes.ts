@@ -12,11 +12,11 @@ import usersSchema from "../schemas/users/users.schema";
 const usersRouter: Router = Router();
 
 usersRouter.post("", yupValidateMiddleware(usersSchema), createUserController);
-usersRouter.delete(
-    "/:id",
-    verifyTokenMiddleware,
-    idOwnerVerifierMiddleware,
-    deleteUserController
-);
+// usersRouter.delete(
+//     "/:id",
+//     verifyTokenMiddleware,
+//     idOwnerVerifierMiddleware,
+//     deleteUserController
+// );
 
 export default usersRouter;
