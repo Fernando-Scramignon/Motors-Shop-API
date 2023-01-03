@@ -2,7 +2,7 @@ import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/users.entity";
 import { AppError } from "../../errors/appError";
 
-async function DeleteUserService(id:string) {
+async function deleteUserService(id:string) {
     const userRepository = AppDataSource.getRepository(User);
     const userDelete = await userRepository.findOne({
       where: {
@@ -19,4 +19,4 @@ async function DeleteUserService(id:string) {
     return true;
 }
 
-export default DeleteUserService;
+export default deleteUserService;
