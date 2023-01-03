@@ -20,7 +20,7 @@ const verifyTokenMiddleware = (
         process.env.SECRET_KEY as string,
         (error: any, decoded: any) => {
             if (error) {
-                throw new AppError(401, "Token is either expired or invalid");
+                throw new AppError(401, "O token expirou ou é inválido");
             }
 
             req.user = {

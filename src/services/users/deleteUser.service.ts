@@ -11,7 +11,7 @@ async function deleteUserService(id:string) {
     });
   
     if (!userDelete) {
-      throw new AppError( 404,"User not found");
+      throw new AppError( 404,"Usuário não encontrado");
     }
   
     await userRepository.delete(userDelete!.id);
