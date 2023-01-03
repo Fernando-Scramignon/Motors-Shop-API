@@ -1,5 +1,7 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, OneToMany, OneToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Address } from "./addresses.entity";
+import { Product } from "./products.entity";
 
 @Entity("users")
 export class User {
@@ -29,6 +31,12 @@ export class User {
 
     @Column({ type: "boolean" })
     isAdvertiser: boolean;
+
+    @OneToOne(() => Address, (address) => address.user)
+    address: Address;
+
+    @OneToMany(() => Product, (product) => product.user)
+    products: Product[];
 
     constructor() {
         if (!this.id) this.id = uuid();

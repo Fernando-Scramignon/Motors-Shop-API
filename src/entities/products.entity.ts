@@ -1,6 +1,7 @@
-import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Image } from "./images.entity";
+import { User } from "./users.entity";
 
 @Entity("products")
 export class Product {
@@ -39,6 +40,9 @@ export class Product {
         onDelete: "CASCADE",
     })
     images: Image[];
+
+    @ManyToOne(() => User, (user) => user.products, { onDelete: "CASCADE" })
+    user: User;
 
     constructor() {
         if (!this.id) {
