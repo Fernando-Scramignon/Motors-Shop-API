@@ -3,7 +3,7 @@ import { v4 as uuid } from "uuid";
 
 @Entity("users")
 export class User {
-    @PrimaryColumn()
+    @PrimaryColumn("uuid")
     readonly id: string;
 
     @Column({ length: 100, unique: true })
