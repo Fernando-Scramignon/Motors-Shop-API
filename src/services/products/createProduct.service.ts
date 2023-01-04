@@ -1,22 +1,38 @@
 import { AppDataSource } from "../../data-source";
 import { Image } from "../../entities/images.entity";
 import { Product } from "../../entities/products.entity";
+import { User } from "../../entities/users.entity";
+import { AppError } from "../../errors/appError";
 import { IProductRequest } from "../../interfaces/products";
 
-async function createProductService({
-    title,
-    year,
-    km,
-    price,
-    description,
-    vehicle_type,
-    announcement_type,
-    published,
-    cover_image,
-    images,
-}: IProductRequest) {
+async function createProductService(
+    {
+        title,
+        year,
+        km,
+        price,
+        description,
+        vehicle_type,
+        announcement_type,
+        published,
+        cover_image,
+        images,
+    }: IProductRequest,
+    id: string
+) {
     const productRepository = AppDataSource.getRepository(Product);
     const imageRepository = AppDataSource.getRepository(Image);
+    const userRepository= AppDataSource.getRepository(User)
+
+    const user = await userRepository.findOne({
+        where: {
+            id: id,
+        },
+    });
+
+    if (!user) {
+        throw new AppError(404, "O usuário associado ao token não foi encontrado");
+    }
 
     const newProduct = new Product();
     newProduct.title = title;
@@ -28,6 +44,7 @@ async function createProductService({
     newProduct.announcement_type = announcement_type;
     newProduct.published = published;
     newProduct.cover_image = cover_image;
+    newProduct.user= user
 
     productRepository.create(newProduct);
     await productRepository.save(newProduct);
