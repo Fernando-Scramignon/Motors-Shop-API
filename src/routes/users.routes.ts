@@ -16,5 +16,4 @@ usersRouter.post("", yupValidateMiddleware(usersSchema), createUserController);
 usersRouter.delete("/:id",verifyTokenMiddleware,idOwnerVerifierMiddleware,deleteUserController)
 usersRouter.patch("/:id",verifyTokenMiddleware,idOwnerVerifierMiddleware,updateUserController)
 
-
 export default usersRouter;
