@@ -3,6 +3,7 @@ import { Router } from "express";
 import createUserController from "../controllers/users/createUser.controller";
 import deleteUserController from "../controllers/users/deleteUser.controller";
 import readUserController from "../controllers/users/readUser.controller";
+import readUserProfileController from "../controllers/users/readUserProfile.controller";
 import updateUserController from "../controllers/users/updateUser.controller";
 import idOwnerVerifierMiddleware from "../middlewares/idOwnerVerifier.middleware";
 import verifyTokenMiddleware from "../middlewares/verifyToken.middleware";
@@ -18,6 +19,7 @@ usersRouter.get(
     idOwnerVerifierMiddleware,
     readUserController
 );
+usersRouter.get("/:id/profile", readUserProfileController);
 usersRouter.post("", yupValidateMiddleware(usersSchema), createUserController);
 usersRouter.delete(
     "/:id",

@@ -10,10 +10,12 @@ const verifyTokenMiddleware = (
 ) => {
     let token = req.headers.authorization;
 
-    token = token!.split(" ")[1];
-
     if (!token)
-        return res.status(401).json({ message: "Missing authorization token" });
+        return res
+            .status(401)
+            .json({ message: "Token de autorização ausente" });
+
+    token = token.includes("Bearer") ? token.split(" ")[1] : token;
 
     jwt.verify(
         token,
