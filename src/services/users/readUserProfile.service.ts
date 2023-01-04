@@ -9,6 +9,7 @@ async function readUserProfileService(id: string) {
             id: id,
         },
         select: {
+            id: true,
             name: true,
             isAdvertiser: true,
         },

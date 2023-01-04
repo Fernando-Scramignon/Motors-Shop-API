@@ -19,7 +19,7 @@ usersRouter.get(
     idOwnerVerifierMiddleware,
     readUserController
 );
-usersRouter.get("/:id", readUserProfileController);
+usersRouter.get("/:id/profile", readUserProfileController);
 usersRouter.post("", yupValidateMiddleware(usersSchema), createUserController);
 usersRouter.delete(
     "/:id",
