@@ -5,7 +5,7 @@ import { Product } from "./products.entity";
 
 @Entity("users")
 export class User {
-    @PrimaryColumn()
+    @PrimaryColumn("uuid")
     readonly id: string;
 
     @Column({ length: 100, unique: true })
