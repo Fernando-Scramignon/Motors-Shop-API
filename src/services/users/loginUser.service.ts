@@ -26,7 +26,7 @@ async function loginUserService(loginData: IUserLogin) {
         expiresIn: "1d",
     });
 
-    return { token };
+    return { token, id: user.id };
 }
 
 export default loginUserService;
