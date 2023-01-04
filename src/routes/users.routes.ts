@@ -8,6 +8,7 @@ import updateUserController from "../controllers/users/updateUser.controller";
 import idOwnerVerifierMiddleware from "../middlewares/idOwnerVerifier.middleware";
 import verifyTokenMiddleware from "../middlewares/verifyToken.middleware";
 import yupValidateMiddleware from "../middlewares/yupValidate.middleware";
+import loginUserController from "../controllers/users/loginUser.controller";
 
 import usersSchema from "../schemas/users/users.schema";
 
@@ -33,5 +34,6 @@ usersRouter.patch(
     idOwnerVerifierMiddleware,
     updateUserController
 );
+usersRouter.post("/login", loginUserController);
 
 export default usersRouter;
