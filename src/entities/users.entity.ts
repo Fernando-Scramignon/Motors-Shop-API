@@ -1,3 +1,4 @@
+import { Exclude } from "class-transformer";
 import { Column, Entity, OneToMany, OneToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Address } from "./addresses.entity";
@@ -11,6 +12,7 @@ export class User {
     @Column({ length: 100, unique: true })
     email: string;
 
+    @Exclude()
     @Column({ length: 256 })
     password: string;
 
