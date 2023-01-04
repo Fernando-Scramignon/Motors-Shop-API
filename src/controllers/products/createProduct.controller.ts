@@ -15,18 +15,23 @@ async function createProductController(req: Request, res: Response) {
         images,
     } = req.body;
 
-    const product = await createProductService({
-        title,
-        year,
-        km,
-        price,
-        description,
-        vehicle_type,
-        announcement_type,
-        published,
-        cover_image,
-        images,
-    });
+    const { id } = req.user;
+
+    const product = await createProductService(
+        {
+            title,
+            year,
+            km,
+            price,
+            description,
+            vehicle_type,
+            announcement_type,
+            published,
+            cover_image,
+            images,
+        },
+        id
+    );
     return res.status(201).json(product);
 }
 
