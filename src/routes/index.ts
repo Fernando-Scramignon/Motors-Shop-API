@@ -1,4 +1,5 @@
 import { Express } from "express";
+
 import productsRouter from "./products.routes";
 import usersRouter from "./users.routes";
 
