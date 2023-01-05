@@ -4,7 +4,7 @@ function REQUIRED_MESSAGE(field: string) {
     return `${field}: Campo obrigatório`;
 }
 function MAX_MESSAGE(charNum: number): string {
-    return `Campo precisa ter no máxio ${charNum} caracteres`;
+    return `Campo precisa ter no máximo ${charNum} caracteres`;
 }
 
 const usersSchema = yup.object().shape({
@@ -14,6 +14,7 @@ const usersSchema = yup.object().shape({
         .max(100, MAX_MESSAGE(100)),
     email: yup
         .string()
+        .email("O email deve ser válido")
         .required(REQUIRED_MESSAGE("email"))
         .max(100, MAX_MESSAGE(100)),
     password: yup
