@@ -34,6 +34,7 @@ async function updateProductService(
         !description &&
         !vehicle_type &&
         !announcement_type &&
+        !!published &&
         !published &&
         !cover_image &&
         !images
@@ -49,7 +50,8 @@ async function updateProductService(
         description: description || product.description,
         vehicle_type: vehicle_type || product.vehicle_type,
         announcement_type: announcement_type || product.announcement_type,
-        published: published || product.published,
+        published:
+            product.published != published ? published : product.published,
         cover_image: cover_image || product.cover_image,
     };
 
