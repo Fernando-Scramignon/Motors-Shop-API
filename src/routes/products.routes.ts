@@ -7,6 +7,7 @@ import updateProductController from "../controllers/products/updateProduct.contr
 import yupValidateMiddleware from "../middlewares/yupValidate.middleware";
 import productSchema from "../schemas/products/products.schema";
 import verifyTokenMiddleware from "../middlewares/verifyToken.middleware";
+import idOwnerProductVerifierMiddleware from "../middlewares/idOwnerProductVerifier.middleware";
 
 const productsRouter = Router();
 
@@ -21,8 +22,18 @@ productsRouter.get("", getProductsController);
 
 productsRouter.get("/:id", getProductByIdController);
 
-productsRouter.delete("/:id", deleteProductController);
+productsRouter.delete(
+    "/:id",
+    verifyTokenMiddleware,
+    idOwnerProductVerifierMiddleware,
+    deleteProductController
+);
 
-productsRouter.patch("/:id", updateProductController);
+productsRouter.patch(
+    "/:id",
+    verifyTokenMiddleware,
+    idOwnerProductVerifierMiddleware,
+    updateProductController
+);
 
 export default productsRouter;
