@@ -3,6 +3,7 @@ import { Column, Entity, OneToMany, OneToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Address } from "./addresses.entity";
 import { Product } from "./products.entity";
+import { Comment } from "./comments.entity";
 
 @Entity("users")
 export class User {
@@ -39,6 +40,9 @@ export class User {
 
     @OneToMany(() => Product, (product) => product.user)
     products: Product[];
+
+    @OneToMany(() => Comment, (Comment) => Comment.user)
+    comments: Comment[];
 
     constructor() {
         if (!this.id) this.id = uuid();

@@ -2,6 +2,7 @@ import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Image } from "./images.entity";
 import { User } from "./users.entity";
+import { Comment } from "./comments.entity";
 
 @Entity("products")
 export class Product {
@@ -43,6 +44,9 @@ export class Product {
 
     @ManyToOne(() => User, (user) => user.products, { onDelete: "CASCADE" })
     user: User;
+
+    @OneToMany(() => Comment, (Comment) => Comment.product)
+    comments: Comment[];
 
     constructor() {
         if (!this.id) {
