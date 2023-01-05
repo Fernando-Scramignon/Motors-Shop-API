@@ -12,7 +12,7 @@ async function updateUserController(req: Request, res: Response) {
         birthdate,
         description,
     });
-    return res.status(204).json({ message: "Usuário atualizado com sucesso" });
+    return res.status(200).json({ message: "Usuário atualizado com sucesso" });
 }
 
 export default updateUserController;

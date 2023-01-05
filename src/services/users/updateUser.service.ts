@@ -8,6 +8,9 @@ async function updateUserService(
     { name, email, cpf, phone, birthdate, description }: IUserUpdate
 ) {
     const userRepository = AppDataSource.getRepository(User);
+    if (!name && !email && !cpf && !phone && !birthdate && !description) {
+        throw new AppError(400, "Adicione um campo, pelo menos um campo é obrigatório");
+    }
     const userupdate = await userRepository.findOne({
         where: {
             id: id,
@@ -30,10 +33,10 @@ async function updateUserService(
     const updatedUser = {
         name: name || userupdate.name,
         email: email || userupdate.email,
-        cpf:cpf|| userupdate.cpf,
-        phone:phone|| userupdate.phone,
-        birthdate:birthdate|| userupdate.birthdate,
-        description:description|| userupdate.description,
+        cpf: cpf || userupdate.cpf,
+        phone: phone || userupdate.phone,
+        birthdate: birthdate || userupdate.birthdate,
+        description: description || userupdate.description,
     };
 
     await userRepository.update(userupdate.id, updatedUser);

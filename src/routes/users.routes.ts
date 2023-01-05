@@ -11,6 +11,7 @@ import yupValidateMiddleware from "../middlewares/yupValidate.middleware";
 import loginUserController from "../controllers/users/loginUser.controller";
 
 import usersSchema from "../schemas/users/users.schema";
+import userUpdateSchema from "../schemas/users/userUpdate.schema";
 
 const usersRouter: Router = Router();
 
@@ -32,6 +33,7 @@ usersRouter.patch(
     "/:id",
     verifyTokenMiddleware,
     idOwnerVerifierMiddleware,
+    yupValidateMiddleware(userUpdateSchema),
     updateUserController
 );
 usersRouter.post("/login", loginUserController);
