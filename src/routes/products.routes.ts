@@ -6,11 +6,13 @@ import getProductsController from "../controllers/products/getProducts.controlle
 import updateProductController from "../controllers/products/updateProduct.controller";
 import yupValidateMiddleware from "../middlewares/yupValidate.middleware";
 import productSchema from "../schemas/products/products.schema";
+import verifyTokenMiddleware from "../middlewares/verifyToken.middleware";
 
 const productsRouter = Router();
 
 productsRouter.post(
     "",
+    verifyTokenMiddleware,
     yupValidateMiddleware(productSchema),
     createProductController
 );
