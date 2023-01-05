@@ -5,7 +5,7 @@ import {
     CreateDateColumn,
     ManyToOne,
 } from "typeorm";
-
+import { v4 as uuid } from "uuid";
 import { User } from "./users.entity";
 import { Product } from "./products.entity";
 
@@ -27,4 +27,8 @@ export class Comment {
         onDelete: "CASCADE",
     })
     product: Product;
+
+    constructor() {
+        if (!this.id) this.id = uuid();
+    }
 }
