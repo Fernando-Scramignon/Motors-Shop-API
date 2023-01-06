@@ -1,5 +1,7 @@
 import { Router } from "express";
 import createCommentController from "../controllers/comments/createComment.controller";
+import deleteCommentController from "../controllers/comments/deleteComment.controller";
+import idOwnerCommentVerifierMiddleware from "../middlewares/idOwnerCommentVerifier.middleware";
 import verifyTokenMiddleware from "../middlewares/verifyToken.middleware";
 import yupValidateMiddleware from "../middlewares/yupValidate.middleware";
 import createCommentSchema from "../schemas/comments/comments.schema";
@@ -12,5 +14,7 @@ commentsRouter.post(
     yupValidateMiddleware(createCommentSchema),
     createCommentController
 );
+
+commentsRouter.delete("/:id",verifyTokenMiddleware,idOwnerCommentVerifierMiddleware,deleteCommentController)
 
 export default commentsRouter;
