@@ -15,6 +15,11 @@ commentsRouter.post(
     createCommentController
 );
 
-commentsRouter.delete("/:id",verifyTokenMiddleware,idOwnerCommentVerifierMiddleware,deleteCommentController)
+commentsRouter.delete(
+    "/:id",
+    verifyTokenMiddleware,
+    idOwnerCommentVerifierMiddleware,
+    deleteCommentController
+);
 
 export default commentsRouter;
