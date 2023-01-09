@@ -9,7 +9,7 @@ async function loginUserController(req: Request, res: Response) {
     const { email, password } = req.body;
 
     if (!email || !password)
-        throw new AppError(400, "Missing email and/or password");
+        throw new AppError(400, "Faltando campos de email e/ou senha");
 
     const loginData: IUserLogin = { email, password };
 
