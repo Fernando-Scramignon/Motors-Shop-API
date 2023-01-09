@@ -8,6 +8,10 @@ async function getProductByIdService(id: string) {
         where: {
             id: id,
         },
+        relations: {
+            user: true,
+            comments: true,
+        },
     });
 
     if (!product) {
