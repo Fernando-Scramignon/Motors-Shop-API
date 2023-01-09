@@ -20,7 +20,10 @@ export class Comment {
     @CreateDateColumn()
     created_at: Date;
 
-    @ManyToOne(() => User, (User) => User.comments, { onDelete: "CASCADE" })
+    @ManyToOne(() => User, (User) => User.comments, {
+        onDelete: "CASCADE",
+        eager: true,
+    })
     user: User;
 
     @ManyToOne(() => Product, (Product) => Product.comments, {
