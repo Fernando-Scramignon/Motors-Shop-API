@@ -27,23 +27,23 @@ const productSchema = yup.object().shape({
         .string()
         .required()
         .test(
-            "Is a valid vehicle type",
-            "Is not a valid vehicle type",
+            "É um tipo de veículo válido",
+            "Não é um tipo de veículo válido",
             (value) => vehicleType(value as string)
         ),
     announcement_type: yup
         .string()
         .required()
         .test(
-            "Is a valid announcement type",
-            "Is not a valid announcement type",
+            "É um tipo de anúncio válido",
+            "Não é um tipo de anúncio válido",
             (value) => announcementType(value as string)
         ),
     published: yup.boolean().required(),
     cover_image: yup
         .string()
         .required()
-        .test("is-url-valid", "URL is not valid", (value) =>
+        .test("É uma url válida", "Não é uma url válida", (value) =>
             isValidUrl(value as string)
         ),
 
@@ -53,7 +53,7 @@ const productSchema = yup.object().shape({
             yup
                 .string()
                 .required()
-                .test("is-url-valid", "URL is not valid", (value) =>
+                .test("É uma url válida", "Não é uma url válida", (value) =>
                     isValidUrl(value as string)
                 )
         )

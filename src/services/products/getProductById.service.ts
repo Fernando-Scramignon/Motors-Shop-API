@@ -15,7 +15,7 @@ async function getProductByIdService(id: string) {
     });
 
     if (!product) {
-        throw new AppError(404, "Product not found");
+        throw new AppError(404, "Produto não encontrado");
     }
 
     return product;
