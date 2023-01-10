@@ -3,6 +3,7 @@ import { IUserCreation } from "../../interfaces/users";
 import { User } from "../../entities/users.entity";
 import { AppError } from "../../errors/appError";
 import { hash } from "bcryptjs";
+import { instanceToPlain } from "class-transformer";
 
 export async function createUserService(userInfo: IUserCreation) {
     const userRepository = AppDataSource.getRepository(User);
@@ -17,7 +18,7 @@ export async function createUserService(userInfo: IUserCreation) {
     userInfo.password = hashedPassword;
 
     let newUser = userRepository.create(userInfo);
-    return await userRepository.save(newUser);
+    return instanceToPlain(await userRepository.save(newUser));
 }
 
 export default createUserService;
