@@ -23,7 +23,7 @@ async function updateProductService(
     const product = await productRepository.findOneBy({ id });
 
     if (!product) {
-        throw new AppError(404, "Product not found");
+        throw new AppError(404, "Produto não encontrado");
     }
 
     if (
@@ -39,7 +39,10 @@ async function updateProductService(
         !cover_image &&
         !images
     ) {
-        throw new AppError(400, "add a field, at least one field is required");
+        throw new AppError(
+            400,
+            "adicione um campo, pelo menos um campo é obrigatório para atualização"
+        );
     }
 
     const updatedProduct = {

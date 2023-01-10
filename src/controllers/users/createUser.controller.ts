@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { AppError } from "../../errors/appError";
 
 import { IUserCreation } from "../../interfaces/users";
 import createUserService from "../../services/users/createUser.service";

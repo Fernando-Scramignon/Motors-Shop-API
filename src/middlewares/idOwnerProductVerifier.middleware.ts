@@ -16,7 +16,7 @@ const idOwnerProductVerifierMiddleware = async (
     });
 
     if (!product) {
-        throw new AppError(404, "Product not found");
+        throw new AppError(404, "Produto não encontrado");
     }
 
     const idComparer = req.user.id;

@@ -8,10 +8,14 @@ async function getProductByIdService(id: string) {
         where: {
             id: id,
         },
+        relations: {
+            user: true,
+            comments: true,
+        },
     });
 
     if (!product) {
-        throw new AppError(404, "Product not found");
+        throw new AppError(404, "Produto não encontrado");
     }
 
     return product;

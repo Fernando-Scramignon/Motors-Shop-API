@@ -34,7 +34,7 @@ export async function createUserService(userFullInfo: IUserCreation) {
         where: [{ email: userInfo.email }, { cpf: userInfo.cpf }],
     });
 
-    if (userAlreadyExists) throw new AppError(409, "User already exists");
+    if (userAlreadyExists) throw new AppError(409, "Usuário já existe");
 
     const hashedPassword = await hash(userInfo.password, 10);
     userInfo.password = hashedPassword;

@@ -11,6 +11,7 @@ async function readUserProfileService(id: string) {
         select: {
             id: true,
             name: true,
+            description: true,
             isAdvertiser: true,
         },
         relations: {

@@ -17,10 +17,10 @@ async function loginUserService(loginData: IUserLogin) {
         where: { email: loginData.email },
     });
 
-    if (!user) throw new AppError(404, "Wrong email or password");
+    if (!user) throw new AppError(404, "Email ou senha incorretos");
 
     const isPasswordEqual = await compare(loginData.password, user.password);
-    if (!isPasswordEqual) throw new AppError(404, "Wrong email or password");
+    if (!isPasswordEqual) throw new AppError(404, "Email ou senha incorretos");
 
     const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY!, {
         expiresIn: "1d",

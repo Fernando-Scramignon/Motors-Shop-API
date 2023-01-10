@@ -7,7 +7,7 @@ async function deleteProductService(id: string) {
     const product = await productRepository.findOneBy({ id });
 
     if (!product) {
-        throw new AppError(404, "Product not found");
+        throw new AppError(404, "Produto não encontrado");
     }
 
     await productRepository.delete(id);
