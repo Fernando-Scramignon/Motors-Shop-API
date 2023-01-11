@@ -12,6 +12,10 @@ import loginUserController from "../controllers/users/loginUser.controller";
 
 import usersSchema from "../schemas/users/users.schema";
 import userUpdateSchema from "../schemas/users/userUpdate.schema";
+import forgotPasswordController from "../controllers/users/forgotPassword.controller";
+import forgotPasswordSchema from "../schemas/users/forgotPassword.schema";
+import recoverPasswordSchema from "../schemas/users/recoverPassword.schema";
+import recoverPasswordController from "../controllers/users/recoverPassword.controller";
 
 const usersRouter: Router = Router();
 
@@ -23,6 +27,16 @@ usersRouter.get(
 );
 usersRouter.get("/:id/profile", readUserProfileController);
 usersRouter.post("", yupValidateMiddleware(usersSchema), createUserController);
+usersRouter.post(
+    "/forgot_password",
+    yupValidateMiddleware(forgotPasswordSchema),
+    forgotPasswordController
+);
+usersRouter.patch(
+    "/recover_password",
+    yupValidateMiddleware(recoverPasswordSchema),
+    recoverPasswordController
+);
 usersRouter.delete(
     "/:id",
     verifyTokenMiddleware,
