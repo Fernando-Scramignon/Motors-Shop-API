@@ -1,3 +1,5 @@
+import { IAddressBase } from "../address";
+
 export interface IUserUpdate {
     name?: string;
     email?: string;
@@ -8,7 +10,18 @@ export interface IUserUpdate {
     password?: string;
 }
 
-export interface IUserCreation {
+export interface IUserBase {
+    name: string;
+    email: string;
+    password: string;
+    cpf: string;
+    phone: string;
+    birthdate: Date;
+    description: string;
+    isAdvertiser: boolean;
+}
+
+export interface IUserCreation extends IUserBase, IAddressBase {
     name: string;
     email: string;
     password: string;
