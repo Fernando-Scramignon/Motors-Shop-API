@@ -1,6 +1,7 @@
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/users.entity";
 import { AppError } from "../../errors/appError";
+import { instanceToPlain } from "class-transformer";
 
 async function readUserService(id: string) {
     const userRepository = AppDataSource.getRepository(User);
@@ -18,7 +19,7 @@ async function readUserService(id: string) {
         throw new AppError(404, "Usuário não encontrado");
     }
 
-    return user;
+    return instanceToPlain(user);
 }
 
 export default readUserService;
