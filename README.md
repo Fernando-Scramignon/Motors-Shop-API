@@ -7,6 +7,7 @@
 -   [3. Rotas](#3-rotas)
     -   [Users](#users)
     -   [Products](#products)
+    -   [Comments](#comments)
 -   [4. Frontend](#4-frontend)
 
 ## 1. Resumo
@@ -483,6 +484,76 @@ resposta:
 
 -   Precisa de um token
 -   Apenas o dono do produto pode deletar suas informações
+-   Não há necessidade de mandar um body na requisição
+
+```json
+No body
+```
+
+resposta:
+
+`No content 204`
+
+```json
+No content
+```
+
+<br/>
+
+### Comments
+
+`POST /comments/product_id`
+
+-   Precisa de um token
+-   Todos os campos são obrigatórios
+
+```json
+{
+    "comment": "Ótimo estado"
+}
+```
+
+resposta:
+
+`Created 201`
+
+```json
+{
+    "id": "09f03840-19f1-469e-beaf-fa995b2ea3ff",
+    "comment": "Ótimo estado",
+    "created_at": "2023-01-11T16:20:56.998Z"
+}
+```
+
+<br/>
+
+`PATCH /comments/:comment_id`
+
+-   Precisa de um token
+-   Apenas o dono do comentário pode atualizar suas informações
+
+```json
+{
+    "comment": "Ótimo estado Update"
+}
+```
+
+resposta:
+
+`OK 200`
+
+```json
+{
+    "message": "Comentário atualizado com sucesso"
+}
+```
+
+<br/>
+
+`DELETE /comments/:comment_id`
+
+-   Precisa de um token
+-   Apenas o dono do comentário pode deletar suas informações
 -   Não há necessidade de mandar um body na requisição
 
 ```json
