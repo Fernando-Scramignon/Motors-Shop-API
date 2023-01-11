@@ -1,3 +1,4 @@
+import { instanceToPlain } from "class-transformer";
 import { AppDataSource } from "../../data-source";
 import { Product } from "../../entities/products.entity";
 import { AppError } from "../../errors/appError";
@@ -18,7 +19,7 @@ async function getProductByIdService(id: string) {
         throw new AppError(404, "Produto não encontrado");
     }
 
-    return product;
+    return instanceToPlain(product);
 }
 
 export default getProductByIdService;

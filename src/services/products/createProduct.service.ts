@@ -1,3 +1,4 @@
+import { instanceToPlain } from "class-transformer";
 import { AppDataSource } from "../../data-source";
 import { Image } from "../../entities/images.entity";
 import { Product } from "../../entities/products.entity";
@@ -22,7 +23,7 @@ async function createProductService(
 ) {
     const productRepository = AppDataSource.getRepository(Product);
     const imageRepository = AppDataSource.getRepository(Image);
-    const userRepository= AppDataSource.getRepository(User)
+    const userRepository = AppDataSource.getRepository(User);
 
     const user = await userRepository.findOne({
         where: {
@@ -31,7 +32,10 @@ async function createProductService(
     });
 
     if (!user) {
-        throw new AppError(404, "O usuário associado ao token não foi encontrado");
+        throw new AppError(
+            404,
+            "O usuário associado ao token não foi encontrado"
+        );
     }
 
     const newProduct = new Product();
@@ -44,7 +48,7 @@ async function createProductService(
     newProduct.announcement_type = announcement_type;
     newProduct.published = published;
     newProduct.cover_image = cover_image;
-    newProduct.user= user
+    newProduct.user = user;
 
     productRepository.create(newProduct);
     await productRepository.save(newProduct);
@@ -60,7 +64,7 @@ async function createProductService(
         })
     );
 
-    return newProduct;
+    return instanceToPlain(newProduct);
 }
 
 export default createProductService;

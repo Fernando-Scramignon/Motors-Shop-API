@@ -1,3 +1,4 @@
+import { instanceToPlain } from "class-transformer";
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/users.entity";
 import { AppError } from "../../errors/appError";
@@ -23,7 +24,7 @@ async function readUserProfileService(id: string) {
         throw new AppError(404, "Usuário não encontrado");
     }
 
-    return user;
+    return instanceToPlain(user);
 }
 
 export default readUserProfileService;
