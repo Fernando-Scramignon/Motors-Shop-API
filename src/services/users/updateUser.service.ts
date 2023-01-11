@@ -5,10 +5,10 @@ import { IUserUpdate } from "../../interfaces/users";
 
 async function updateUserService(
     id: string,
-    { name, email, cpf, phone, birthdate, description }: IUserUpdate
+    { name, email, cpf, phone, birthdate, description,password }: IUserUpdate
 ) {
     const userRepository = AppDataSource.getRepository(User);
-    if (!name && !email && !cpf && !phone && !birthdate && !description) {
+    if (!name && !email && !cpf && !phone && !birthdate && !description && !password) {
         throw new AppError(400, "Adicione um campo, pelo menos um campo é obrigatório");
     }
     const userupdate = await userRepository.findOne({
@@ -30,6 +30,16 @@ async function updateUserService(
         }
     }
 
+    if(cpf){
+        const userCpfInUse = await userRepository.findOne({
+            where: { cpf: cpf },
+        });
+
+        if (userCpfInUse) {
+            throw new AppError(400, "CPF já está em uso");
+        }
+    }
+
     const updatedUser = {
         name: name || userupdate.name,
         email: email || userupdate.email,
@@ -37,6 +47,7 @@ async function updateUserService(
         phone: phone || userupdate.phone,
         birthdate: birthdate || userupdate.birthdate,
         description: description || userupdate.description,
+        password: password || userupdate.password
     };
 
     await userRepository.update(userupdate.id, updatedUser);

@@ -5,6 +5,7 @@ export interface IUserUpdate {
     phone?: string;
     birthdate?: Date;
     description?: string;
+    password?: string;
 }
 
 export interface IUserCreation {
