@@ -21,10 +21,7 @@ const addressSchema = yup.object().shape({
         .string()
         .required(REQUIRED_MESSAGE("number"))
         .max(100, MAX_MESSAGE(100)),
-    complement: yup
-        .string()
-        .required(REQUIRED_MESSAGE("complement"))
-        .max(10, MAX_MESSAGE(10)),
+    complement: yup.string().notRequired(),
 });
 
 export default addressSchema;
