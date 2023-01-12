@@ -55,10 +55,7 @@ const usersSchema = yup.object().shape({
         .string()
         .required(REQUIRED_MESSAGE("street"))
         .max(100, MAX_MESSAGE(100, "street")),
-    complement: yup
-        .string()
-        .required(REQUIRED_MESSAGE("complement"))
-        .max(10, MAX_MESSAGE(10, "complement")),
+    complement: yup.string().notRequired(),
 });
 
 export default usersSchema;
