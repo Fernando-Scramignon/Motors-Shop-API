@@ -8,7 +8,7 @@ import { IUserUpdate } from "../../interfaces/users";
 async function updateUserService(
     id: string,
     { name, email, cpf, phone, birthdate, description, password }: IUserUpdate,
-    { cep, state, city, street, number, complement }: IAddressUpdate
+    address?: IAddressUpdate
 ) {
     const userRepository = AppDataSource.getRepository(User);
     const addresRepository = AppDataSource.getRepository(Address);
@@ -21,12 +21,12 @@ async function updateUserService(
         !birthdate &&
         !description &&
         !password &&
-        !cep &&
-        !state &&
-        !city &&
-        !street &&
-        !number &&
-        !complement
+        !address?.cep &&
+        !address?.state &&
+        !address?.city &&
+        !address?.street &&
+        !address?.number &&
+        !address?.complement
     ) {
         throw new AppError(
             400,
@@ -82,13 +82,15 @@ async function updateUserService(
     };
 
     const updatedAddres = {
-        cep: cep || addressupdate.cep,
-        city: city || addressupdate.city,
-        complement: complement || addressupdate.complement,
-        number: number || addressupdate.number,
-        state: state || addressupdate.state,
-        street: street || addressupdate.street,
+        cep: address?.cep || addressupdate.cep,
+        city: address?.city || addressupdate.city,
+        complement: address?.complement || addressupdate.complement,
+        number: address?.number || addressupdate.number,
+        state: address?.state || addressupdate.state,
+        street: address?.street || addressupdate.street,
     };
+
+    console.log("address", updatedAddres);
 
     await userRepository.update(userupdate.id, updatedUser);
     await addresRepository.update(addressupdate.id, updatedAddres);

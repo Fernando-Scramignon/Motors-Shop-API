@@ -9,12 +9,7 @@ import { Address } from "../../entities/addresses.entity";
 
 export async function createUserService(userFullInfo: IUserCreation) {
     const addressInfo: IAddressBase = {
-        cep: userFullInfo.cep,
-        city: userFullInfo.city,
-        complement: userFullInfo.complement,
-        number: userFullInfo.number,
-        state: userFullInfo.state,
-        street: userFullInfo.street,
+        ...userFullInfo.address,
     };
     const userInfo: IUserBase = {
         name: userFullInfo.name,
