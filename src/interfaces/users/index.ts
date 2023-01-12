@@ -21,15 +21,8 @@ export interface IUserBase {
     isAdvertiser: boolean;
 }
 
-export interface IUserCreation extends IUserBase, IAddressBase {
-    name: string;
-    email: string;
-    password: string;
-    cpf: string;
-    phone: string;
-    birthdate: Date;
-    description: string;
-    isAdvertiser: boolean;
+export interface IUserCreation extends IUserBase {
+    address: IAddressBase;
 }
 
 export interface IUserLogin {

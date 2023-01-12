@@ -15,12 +15,20 @@ const userUpdateSchema = yup.object().shape({
     phone: yup.string().max(14, MAX_MESSAGE(14, "phone")),
     birthdate: yup.date(),
     description: yup.string().max(300, MAX_MESSAGE(300, "description")),
-    cep: yup.string().max(9, MAX_MESSAGE(9, "cep")),
-    state: yup.string().max(50, MAX_MESSAGE(50, "state")),
-    city: yup.string().max(50, MAX_MESSAGE(50, "city")),
-    number: yup.string().max(100, MAX_MESSAGE(100, "number")),
-    street: yup.string().max(100, MAX_MESSAGE(100, "street")),
-    complement: yup.string().max(10, MAX_MESSAGE(10, "complement")),
+    address: yup.object({
+        cep: yup
+            .string()
+            .max(9, MAX_MESSAGE(9, "cep"))
+            .matches(/^[0-9]+$/, "cep: precisa conter apenas números"),
+        state: yup.string().max(50, MAX_MESSAGE(50, "state")),
+        city: yup.string().max(50, MAX_MESSAGE(50, "city")),
+        number: yup
+            .string()
+            .max(10, MAX_MESSAGE(10, "number"))
+            .matches(/^[0-9]+$/, "number: precisa conter apenas números"),
+        street: yup.string().max(100, MAX_MESSAGE(100, "street")),
+        complement: yup.string().max(10, MAX_MESSAGE(10, "complement")),
+    }),
 });
 
 export default userUpdateSchema;

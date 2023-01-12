@@ -3,9 +3,16 @@ import updateUserService from "../../services/users/updateUser.service";
 
 async function updateUserController(req: Request, res: Response) {
     const { id } = req.params;
-    const { name, email, cpf, phone, birthdate, description, password } =
-        req.body;
-    const { cep, state, city, street, number, complement } = req.body;
+    const {
+        name,
+        email,
+        cpf,
+        phone,
+        birthdate,
+        description,
+        password,
+        address,
+    } = req.body;
     const updatedUser = await updateUserService(
         id,
         {
@@ -17,7 +24,7 @@ async function updateUserController(req: Request, res: Response) {
             description,
             password,
         },
-        { cep, state, city, street, number, complement }
+        address
     );
     return res.status(200).json({ message: "Usuário atualizado com sucesso" });
 }
