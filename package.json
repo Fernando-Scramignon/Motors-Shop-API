@@ -1,9 +1,11 @@
 {
+    "license": "MIT",
     "scripts": {
         "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
         "typeorm": "typeorm-ts-node-commonjs",
         "test": "NODE_ENV=test jest",
-        "build": "tsc"
+        "build": "tsc",
+        "start": "node dist/server.js"
     },
     "devDependencies": {
         "@types/bcryptjs": "^2.4.2",
@@ -39,6 +41,6 @@
         "reflect-metadata": "^0.1.13",
         "typeorm": "^0.3.11",
         "uuid": "^9.0.0",
-        "yup": "^0.32.11"
+        "yup": "^1.2.0"
     }
 }
