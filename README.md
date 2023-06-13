@@ -3,7 +3,13 @@
 ## Sumário
 
 -   [1. Resumo](#1-resumo)
--   [2. Preparativos](#2-preparativos)
+-   [2. Rodando locamente](#2-rodando-locamente)
+    -   [2.1. Criando banco de dados](#21-criando-banco-de-dados)
+    -   [2.2. Crie um arquivo env](#22-crie-um-arquivo-env)
+    -   [2.3. Instale as dependências](#23-instale-as-dependências)
+    -   [2.4. Execute as migrações](#24-execute-as-migrações-para-realizar-a-persistência-de-dados)
+    -   [2.5. Rode a API](#25-rode-a-api)
+    -   [2.6 Usando a API](#26-usando-a-api)
 -   [3. Rotas](#3-rotas)
     -   [Users](#users)
     -   [Products](#products)
@@ -13,6 +19,8 @@
 ## 1. Resumo
 
 Uma Api feita para uma loja virtual de compra, venda e leilão de automóveis. Usuários podem se cadastrar e fazer login, existem dois tipos de usuários: comprador e anunciante. O comprador terá um CRUD para as informações do seu perfil e podera visualizar, comprar e adicionar feedbacks sobre os veículos. O anunciante terá um CRUD das informações do seu perfil e de seus produtos.
+
+url base (deploy): https://motors-shop-api.onrender.com
 
 A aplicação possui cinco tabelas:
 
@@ -26,32 +34,54 @@ A aplicação possui cinco tabelas:
 
 <img src="diagrama-de-entidades.png">
 
-## 2. Preparativos
+## 2. Rodando locamente
 
-### 2.1. Instale as dependências
+### 2.1. Criando banco de dados
 
-Após fazer o clone do projeto instale as dependências:
+Certifique-se de ter o postgresql instalado e funcionando. Entre no seu usuário com o comando:
 
 ```shell
-yarn
+psql -U nome_de_usuario
 ```
+
+E o use o comando abaixo para criar o banco de dados:
+
+```shell
+CREATE DATABASE nome_do_banco_de_dados
+```
+
+Substitua o "nome_de_usuario" pelo nome do seu usuário e "nome_do_banco_de_dados" pelo nome desejado
 
 ### 2.2. Crie um arquivo .env
 
 Clone o arquivo .env.example e edite ele com os seus dados,<br/>
 Em seguida renomeie a copia para .env
 
-### 2.3. Execute as migrações para realizar a persistência de dados
+### 2.3. Instale as dependências
+
+Após fazer o clone do projeto instale as dependências:
 
 ```shell
-yarn typeorm migration:run -d ./src/data-source.ts
+npm install
 ```
 
-### 2.4. Rode a api
+### 2.4. Execute as migrações para realizar a persistência de dados
+
+As migrações vão moldar o banco de dados existente e deixá-lo pronto para o uso
 
 ```shell
-yarn dev
+npm run typeorm migration:run -- -d dist/data-source
 ```
+
+### 2.5. Rode a api
+
+```shell
+npm run dev
+```
+
+### 2.6. Usando a API
+
+A aplicação estará hospedada em http://localhost:port (port é configurado no .env, Ex: 8000)
 
 ## 3. Rotas
 
